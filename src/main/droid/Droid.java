@@ -11,6 +11,8 @@ public class Droid {
         this.damage = damage;
     }
 
+    public Droid(){}
+
     public void takeDamage(int damage){
         health -= damage;
     }

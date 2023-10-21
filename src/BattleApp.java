@@ -26,10 +26,13 @@ public class BattleApp {
                 case 1:
                     System.out.print("Enter Droid name: ");
                     String droidName = scanner.nextLine();
+
                     System.out.print("Enter Droid health: ");
                     int droidHealth = scanner.nextInt();
+
                     System.out.print("Enter Droid damage: ");
                     int droidDamage = scanner.nextInt();
+
                     System.out.print("Enter Droid heal: ");
                     int droidHeal = scanner.nextInt();
 
