@@ -17,6 +17,10 @@ public class HealDroid extends Droid {
         this.heal = heal;
     }
 
+    public void takeHeal(int heal){
+        health += heal;
+    }
+
     @Override
     public String toString() {
         return "HealDroid{" +
