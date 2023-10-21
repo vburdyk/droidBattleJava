@@ -1,17 +1,16 @@
-public class HealDroid extends Droid{
-    int heal;
-    public HealDroid(String name, int health, int damage, int heal){
+package main.droid;
+
+public class BattleDroid extends Droid {
+    public BattleDroid(String name, int health, int damage) {
         super(name, health, damage);
-        this.heal = heal;
     }
 
     @Override
     public String toString() {
-        return "HealDroid{" +
+        return "BattleDroid{" +
                 "name='" + name + '\'' +
                 ", health=" + health +
                 ", damage=" + damage +
-                ", heal=" + heal +
                 '}';
     }
 }
