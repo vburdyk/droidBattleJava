@@ -6,10 +6,14 @@ import battle.and.save.RecordBattle;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static battle.and.save.RecordBattle.saveBattleRecord;
+import static battle.and.save.RecordBattle.loadAndPlayBattleRecord;
+
 public class BattleApp {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Droid> droids = new ArrayList<>();
+        ArrayList<String> battleRecord = new ArrayList<>();
 
         while (true) {
             System.out.println("\nMenu:");
@@ -17,7 +21,9 @@ public class BattleApp {
             System.out.println("2. Create a Battle Droid");
             System.out.println("3. Show the list of created Droids");
             System.out.println("4. Battle 1 vs 1");
-            System.out.println("5. Exit");
+            System.out.println("5. Save record of the battle");
+            System.out.println("6. Play record of the battle");
+            System.out.println("7. Exit");
 
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -82,10 +88,16 @@ public class BattleApp {
                     Droid droid1 = droids.get(droidIndex1);
                     Droid droid2 = droids.get(droidIndex2);
 
-                    RecordBattle.battleDroids(droid1, droid2);
+                    RecordBattle.battleDroids(droid1, droid2, battleRecord);
+                    break;
+                case 5:
+                    saveBattleRecord(battleRecord);
+                    break;
+                case 6:
+                    loadAndPlayBattleRecord(battleRecord);
                     break;
 
-                case 5:
+                case 7:
                     System.out.println("Exiting the program.");
                     scanner.close();
                     System.exit(0);
