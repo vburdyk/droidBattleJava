@@ -6,11 +6,17 @@ public class BattleDroid extends Droid {
     }
 
     @Override
+    public void takeDamage(int damage){
+        super.takeDamage(damage);
+
+    }
+
+    @Override
     public String toString() {
         return "BattleDroid{" +
-                "name='" + name + '\'' +
-                ", health=" + health +
-                ", damage=" + damage +
+                "name='" + getName() + '\'' +
+                ", health=" + getHealth() +
+                ", damage=" + getDamage() +
                 '}';
     }
 }

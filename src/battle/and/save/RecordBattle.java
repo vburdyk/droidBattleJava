@@ -31,84 +31,57 @@ public class RecordBattle {
         }
     }
 
-    public static void giveDamage(Droid droid1, Droid droid2) {
-        int damage1 = droid1.getDamage();
-        int damage2 = droid2.getDamage();
-        droid2.takeDamage(damage1);
-        droid1.takeDamage(damage2);
-    }
-
-    public static void giveHeal(Droid droid1, Droid droid2) {
-        if (droid1 instanceof HealDroid && droid2 instanceof HealDroid) {
-            ((HealDroid) droid1).takeHeal(((HealDroid) droid1).getHeal());
-            ((HealDroid) droid2).takeHeal(((HealDroid) droid2).getHeal());
+    public static void whoWinTeam(Droid team1Droid1, Droid team1Droid2, Droid team2Droid1, Droid team2Droid2){
+        if(team1Droid1.isAlive() || team1Droid2.isAlive()){
+            System.out.println("Team 1 won!");
+        } else if (team2Droid1.isAlive() || team2Droid2.isAlive()){
+            System.out.println("Team 2 won!");
+        } else {
+            System.out.println("Draw");
         }
     }
 
+    public static void giveDamage(Droid droid1, Droid droid2) {
+
+        droid2.takeDamage(droid1.getDamage());
+        droid1.takeDamage(droid2.getDamage());
+    }
 
     public static void battleDroids(Droid droid1, Droid droid2, ArrayList<String> battleRecord) {
+        System.out.println("Battling " + droid1.getName() + " vs " + droid2.getName());
 
-        if (droid1 instanceof HealDroid && droid2 instanceof HealDroid) {
-            System.out.println("Battling " + droid1.getName() + "(health: " + droid1.getHealth() + " damage: " + droid1.getDamage() + " heal: " + ((HealDroid) droid1).getHeal() + ")" + " vs " + droid2.getName() + "(health: " + droid2.getHealth() + " damage: " + droid2.getDamage() + " heal: " + ((HealDroid) droid2).getHeal() + ")");
+        while (droid1.isAlive() && droid2.isAlive()) {
+            giveDamage(droid1, droid2);
 
-            while (droid1.isAlive() && droid2.isAlive()) {
-                giveDamage(droid1, droid2);
-                giveHeal(droid1, droid2);
-                setZeroHP(droid1, droid2);
-
-                battleRecord.add(droid1.getName() + " (" + droid1.getHealth() + " HP, healed on: " + ((HealDroid) droid1).getHeal() + " HP) vs " + droid2.getName() + " (" + droid2.getHealth() + " HP, healed on: " + ((HealDroid) droid2).getHeal() + " HP)");
-                System.out.println(droid1.getName() + " (" + droid1.getHealth() + " HP, healed on: " + ((HealDroid) droid1).getHeal() + " HP) vs " + droid2.getName() + " (" + droid2.getHealth() + " HP, healed on: " + ((HealDroid) droid2).getHeal() + " HP)");
-
-            }
-
-            whoWin(droid1, droid2);
+            setZeroHP(droid1, droid2);
+            battleRecord.add(droid1.getName() + " (" + droid1.getHealth() + " HP) vs " + droid2.getName() + " (" + droid2.getHealth() + " HP)");
+            System.out.println();
+            System.out.println(droid1.getName() + " (" + droid1.getHealth() + " HP) vs " + droid2.getName() + " (" + droid2.getHealth() + " HP)");
+            System.out.println("----------------------------------------------");
         }
 
-        if (droid1 instanceof BattleDroid && droid2 instanceof BattleDroid) {
-            System.out.println("Battling " + droid1.getName() + "(health: " + droid1.getHealth() + " damage: " + droid1.getDamage() + ")" + " vs " + droid2.getName() + "(health: " + droid2.getHealth() + " damage: " + droid2.getDamage() + ")");
-            while (droid1.isAlive() && droid2.isAlive()) {
-
-                giveDamage(droid1, droid2);
-                setZeroHP(droid1, droid2);
-
-                battleRecord.add(droid1.getName() + " (" + droid1.getHealth() + "HP) vs " + droid2.getName() + " (" + droid2.getHealth() + "HP)");
-                System.out.println(droid1.getName() + " (" + droid1.getHealth() + "HP) vs " + droid2.getName() + " (" + droid2.getHealth() + "HP)");
-            }
-            whoWin(droid1, droid2);
-        }
-
-        if (droid1 instanceof BattleDroid && droid2 instanceof HealDroid) {
-
-            System.out.println("Battling " + droid1.getName() + "(health: " + droid1.getHealth() + " damage: " + droid1.getDamage() + ")" + " vs " + droid2.getName() + "(health: " + droid2.getHealth() + " damage: " + droid2.getDamage() + " heal: " + ((HealDroid) droid2).getHeal() + ")");
-
-            while (droid1.isAlive() && droid2.isAlive()) {
-
-                giveDamage(droid1, droid2);
-                setZeroHP(droid1, droid2);
-                giveHeal(null, droid2);
-
-                battleRecord.add(droid1.getName() + " (" + droid1.getHealth() + "HP) vs " + droid2.getName() + "(health: " + droid2.getHealth() + " damage: " + droid2.getDamage() + " heal: " + ((HealDroid) droid2).getHeal() + ")");
-                System.out.println(droid1.getName() + " (" + droid1.getHealth() + "HP) vs " + droid2.getName() + "(health: " + droid2.getHealth() + " damage: " + droid2.getDamage() + " heal: " + ((HealDroid) droid2).getHeal() + ")");
-            }
-            whoWin(droid1, droid2);
-        }
-
-        if (droid1 instanceof HealDroid && droid2 instanceof BattleDroid) {
-
-            System.out.println("Battling " + droid1.getName() + "(health: " + droid1.getHealth() + " damage: " + droid1.getDamage() + " heal: " + ((HealDroid) droid1).getHeal() + ")" + " vs " + droid2.getName() + "(health: " + droid2.getHealth() + " damage: " + droid2.getDamage() + ")");
-
-            while (droid1.isAlive() && droid2.isAlive()) {
-
-                giveDamage(droid1, droid2);
-                setZeroHP(droid1, droid2);
-                giveHeal(droid1, null);
-
-                battleRecord.add("Battling " + droid1.getName() + "(health: " + droid1.getHealth() + " damage: " + droid1.getDamage() + " heal: " + ((HealDroid) droid1).getHeal() + ")" + " vs " + droid2.getName() + "(health: " + droid2.getHealth() + " damage: " + droid2.getDamage() + ")");
-                System.out.println(droid1.getName() + " (" + droid1.getHealth() + "HP) vs " + droid2.getName() + " (" + droid2.getHealth() + "HP)");
-            }
-            whoWin(droid1, droid2);
-        }
+        battleRecord.add("------------------------------------------------------------------------------------------------------------------------");
+        whoWin(droid1, droid2);
     }
+
+    public static void battle2v2(Droid team1Droid1, Droid team1Droid2, Droid team2Droid1, Droid team2Droid2, ArrayList<String> battleRecord) {
+        System.out.println("Battling " + team1Droid1.getName() + " & " + team1Droid2.getName() + " vs " + team2Droid1.getName() + " & " + team2Droid2.getName());
+
+        while ((team1Droid1.isAlive() || team1Droid2.isAlive()) && (team2Droid1.isAlive() || team2Droid2.isAlive())) {
+            giveDamage(team1Droid1, team2Droid1);
+            giveDamage(team1Droid2, team2Droid2);
+            setZeroHP(team1Droid1, team2Droid1);
+            setZeroHP(team1Droid2, team2Droid2);
+            System.out.println("----------------------------------------------");
+            battleRecord.add(team1Droid1.getName() + " (" + team1Droid1.getHealth() + " HP) & " + team1Droid2.getName() + " (" + team1Droid2.getHealth() + " HP) vs " + team2Droid1.getName() + " (" + team2Droid1.getHealth() + " HP) & " + team2Droid2.getName() + " (" + team2Droid2.getHealth() + " HP)");
+            System.out.println(team1Droid1.getName() + " & " + team1Droid2.getName() + " vs " + team2Droid1.getName() + " & " + team2Droid2.getName());
+
+        }
+
+        battleRecord.add("------------------------------------------------------------------------------------------------------------------------");
+        whoWinTeam(team1Droid1, team2Droid1, team2Droid2, team2Droid2);
+    }
+
     public static void saveBattleRecord(ArrayList<String> battleRecord) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("battle_record.txt"));

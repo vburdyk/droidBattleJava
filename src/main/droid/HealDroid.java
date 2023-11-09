@@ -1,13 +1,10 @@
 package main.droid;
 
 public class HealDroid extends Droid {
-    public HealDroid(){}
-
-    int heal;
-    public HealDroid(String name, int health, int damage, int heal){
-        super(name, health, damage);
-        this.heal = heal;
+    public HealDroid() {
     }
+
+    private int heal;
 
     public int getHeal() {
         return heal;
@@ -17,16 +14,33 @@ public class HealDroid extends Droid {
         this.heal = heal;
     }
 
-    public void takeHeal(int heal){
-        health += heal;
+    @Override
+    public void takeDamage(int damage) {
+        super.takeDamage(damage);
+        takeHeal(heal);
+        System.out.println(getName() + " got damage: " + getDamage());
+    }
+
+    public void takeHeal(int heal) {
+
+        if (isHealDroid()) {
+            int currentHP = getHealth();
+            currentHP += heal;
+            setHealth(currentHP);
+            System.out.println(getName() + " recovered " + getHeal() + " HP");
+        } else {
+            int currentHP = getHealth();
+            currentHP += heal;
+            setHealth(currentHP);
+        }
     }
 
     @Override
     public String toString() {
         return "HealDroid{" +
-                "name='" + name + '\'' +
-                ", health=" + health +
-                ", damage=" + damage +
+                "name='" + getName() + '\'' +
+                ", health=" + getHealth() +
+                ", damage=" + getDamage() +
                 ", heal=" + heal +
                 '}';
     }

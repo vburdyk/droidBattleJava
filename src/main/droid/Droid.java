@@ -1,9 +1,9 @@
 package main.droid;
 
 public class Droid {
-    String name;
-    int health;
-    int damage;
+    private String name;
+    private int health;
+    private int damage;
 
     public Droid(String name, int health, int damage) {
         this.name = name;
@@ -21,6 +21,10 @@ public class Droid {
         return health > 0;
     }
 
+    public boolean isHealDroid()
+    {
+        return this instanceof HealDroid;
+    }
     public String getName() {
         return name;
     }
