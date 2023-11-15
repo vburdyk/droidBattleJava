@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"<Unnamed>","l":"BattleApp"},{"p":"main.droid","l":"BattleDroid"},{"p":"main.droid","l":"Droid"},{"p":"main.droid","l":"HealDroid"},{"p":"battle.and.save","l":"RecordBattle"}];updateSearchResults();

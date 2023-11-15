@@ -9,13 +9,22 @@ import java.util.Scanner;
 import static battle.and.save.RecordBattle.saveBattleRecord;
 import static battle.and.save.RecordBattle.loadAndPlayBattleRecord;
 
+/**
+ * The BattleApp class serves as the main application for managing and simulating battles between droids.
+ * It allows the user to create heal and battle droids, view the list of created droids, and initiate battles.
+ * The application also provides options to save and load battle records.
+ */
 public class BattleApp {
+
+    /**
+     * The main method that runs the BattleApp.
+     *
+     * @param args Command-line arguments (not used in this application).
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Droid> droids = new ArrayList<>();
         ArrayList<String> battleRecord = new ArrayList<>();
-
-        ArrayList<String> battleRecord2v2 = new ArrayList<>();
 
 
         while (true) {
@@ -34,6 +43,8 @@ public class BattleApp {
 
             switch (choice) {
                 case 1:
+                    // Creating a Heal Droid
+                    // (Prompting user for input and adding the droid to the list)
                     System.out.print("Enter Droid name: ");
                     String droidName = scanner.nextLine();
 
@@ -56,6 +67,8 @@ public class BattleApp {
                     break;
 
                 case 2:
+                    // Creating a Battle Droid
+                    // (Prompting user for input and adding the droid to the list)
                     System.out.print("Enter Droid name: ");
                     String droidName2 = scanner.nextLine();
 
@@ -74,6 +87,7 @@ public class BattleApp {
                     break;
 
                 case 3:
+                    // Displaying the list of created droids
                     System.out.println("List of created Droids:");
                     for (Droid droid : droids) {
                         System.out.println(droid);
@@ -81,6 +95,8 @@ public class BattleApp {
                     break;
 
                 case 4:
+                    // Initiating a 1 vs 1 battle
+                    // (Prompting user for droid selection and displaying battle result)
                     if (droids.size() < 2) {
                         System.out.println("You need more droids to battle");
                         break;
@@ -102,6 +118,8 @@ public class BattleApp {
                     break;
 
                 case 5:
+                    // Initiating a 2 vs 2 battle
+                    // (Prompting user for droid selection and displaying battle result)
                     if (droids.size() < 4) {
                         System.out.println("You need more droids to battle");
                         break;
@@ -134,12 +152,15 @@ public class BattleApp {
                     RecordBattle.battle2v2(team1Droid1, team1Droid2, team2Droid1, team2Droid2, battleRecord);
                     break;
                 case 6:
+                    // Saving the battle record to a file
                     saveBattleRecord(battleRecord);
                     break;
                 case 7:
+                    // Loading and playing a battle record from a file
                     loadAndPlayBattleRecord(battleRecord);
                     break;
                 case 8:
+                    // Exiting the program
                     System.out.println("Exiting the program.");
                     scanner.close();
                     System.exit(0);
