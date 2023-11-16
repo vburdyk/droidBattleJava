@@ -56,10 +56,10 @@ public class RecordBattle {
      * @param team2Droid1 The first droid of Team 2.
      * @param team2Droid2 The second droid of Team 2.
      */
-    public static void whoWinTeam(Droid team1Droid1, Droid team1Droid2, Droid team2Droid1, Droid team2Droid2){
-        if(team1Droid1.isAlive() || team1Droid2.isAlive()){
+    public static void whoWinTeam(Droid team1Droid1, Droid team1Droid2, Droid team2Droid1, Droid team2Droid2) {
+        if (team1Droid1.isAlive() || team1Droid2.isAlive()) {
             System.out.println("Team 1 won!");
-        } else if (team2Droid1.isAlive() || team2Droid2.isAlive()){
+        } else if (team2Droid1.isAlive() || team2Droid2.isAlive()) {
             System.out.println("Team 2 won!");
         } else {
             System.out.println("Draw");
@@ -92,13 +92,13 @@ public class RecordBattle {
             giveDamage(droid1, droid2);
 
             setZeroHP(droid1, droid2);
-            battleRecord.add(droid1.getName() + " (" + droid1.getHealth() + " HP) vs " + droid2.getName() + " (" + droid2.getHealth() + " HP)");
+            battleRecord.add(droid1.getName() + " (" + droid1.getHealth() + " HP" + droid1.getDamage() + " points)" + "vs " + droid2.getName() + " (" + droid2.getHealth() + " HP" + droid2.getDamage() + " points)");
             System.out.println();
-            System.out.println(droid1.getName() + " (" + droid1.getHealth() + " HP) vs " + droid2.getName() + " (" + droid2.getHealth() + " HP)");
+            System.out.println(droid1.getName() + " (" + droid1.getHealth() + " HP" + droid1.getDamage() + " points)" + "vs " + droid2.getName() + " (" + droid2.getHealth() + " HP" + droid2.getDamage() + " points)");
             System.out.println("----------------------------------------------");
         }
 
-        battleRecord.add("------------------------------------------------------------------------------------------------------------------------");
+        battleRecord.add("----------------------------------------------------");
         whoWin(droid1, droid2);
     }
 
@@ -120,8 +120,8 @@ public class RecordBattle {
             setZeroHP(team1Droid1, team2Droid1);
             setZeroHP(team1Droid2, team2Droid2);
             System.out.println("----------------------------------------------");
-            battleRecord.add(team1Droid1.getName() + " (" + team1Droid1.getHealth() + " HP) & " + team1Droid2.getName() + " (" + team1Droid2.getHealth() + " HP) vs " + team2Droid1.getName() + " (" + team2Droid1.getHealth() + " HP) & " + team2Droid2.getName() + " (" + team2Droid2.getHealth() + " HP)");
-            System.out.println(team1Droid1.getName() + " & " + team1Droid2.getName() + " vs " + team2Droid1.getName() + " & " + team2Droid2.getName());
+            battleRecord.add(team1Droid1.getName() + " (" + team1Droid1.getHealth() + " HP" + team1Droid1.getDamage() + " points)" + " & " + team1Droid2.getName() + " (" + team1Droid2.getHealth() + " HP" + team1Droid2.getDamage() + " points) vs " + team2Droid1.getName() + " (" + team2Droid1.getHealth() + " HP" + team2Droid1.getDamage() + " points)" + " & " + team2Droid1.getName() + " (" + team2Droid1.getHealth() + " HP" + team2Droid1.getDamage() + " points)");
+            System.out.println(team1Droid1.getName() + " (" + team1Droid1.getHealth() + " HP" + team1Droid1.getDamage() + " points)" + " & " + team1Droid2.getName() + " (" + team1Droid2.getHealth() + " HP" + team1Droid2.getDamage() + " points) vs " + team2Droid1.getName() + " (" + team2Droid1.getHealth() + " HP" + team2Droid1.getDamage() + " points)" + " & " + team2Droid1.getName() + " (" + team2Droid1.getHealth() + " HP" + team2Droid1.getDamage() + " points)");
 
         }
 
